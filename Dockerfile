@@ -15,7 +15,4 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 EXPOSE 3000
 
-# TRICK: Create the file that the app looks for to prove it's in a container
-RUN touch /.dockerenv
-
 CMD ["npm", "start"]
