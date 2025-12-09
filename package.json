@@ -7,7 +7,9 @@
     "start": "node src/000.js"
   },
   "dependencies": {
-    "express": "~4.16.3"
+    "express": "^4.21.2",
+    "helmet": "^7.0.0",
+    "express-rate-limit": "^6.8.0"
   },
   "keywords": [],
   "author": "Rearc",
