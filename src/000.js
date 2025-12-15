@@ -41,7 +41,8 @@ app.get('/loadbalanced', function (req, res) {
   // Only pass safe, known headers to prevent command injection
   const safeHeaders = {
     host: req.headers.host || '',
-    'user-agent': (req.headers['user-agent'] || '').substring(0, 200)
+    'user-agent': (req.headers['user-agent'] || '').substring(0, 200),
+    'x-forwarded-proto': req.headers['x-forwarded-proto'] || 'http'
   };
   exec('bin/004 ' + JSON.stringify(safeHeaders), (err, stdout, stderr) => {
     return res.send(`${stdout}`);
@@ -52,7 +53,8 @@ app.get('/tls', function (req, res) {
   const { exec } = require('child_process');
   // Only pass safe, known headers to prevent command injection
   const safeHeaders = {
-    host: req.headers.host || ''
+    host: req.headers.host || '',
+    'x-forwarded-proto': req.headers['x-forwarded-proto'] || 'http'
   };
   exec('bin/005 ' + JSON.stringify(safeHeaders), (err, stdout, stderr) => {
     return res.send(`${stdout}`);
