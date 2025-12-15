@@ -12,6 +12,9 @@ FROM node:22-alpine AS runtime
 WORKDIR /app
 COPY --from=builder /app .
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# TRICK: Create the file that the app looks for to prove it's in a container
+RUN touch /.dockerenv
+
 USER appuser
 EXPOSE 3000
 
